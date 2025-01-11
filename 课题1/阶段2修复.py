@@ -1036,13 +1036,19 @@ def process_single_flight(row, model, label_encoders, scaler_x, scaler_y, city_m
         return None
 
 if __name__ == '__main__':
+    # 记录开始时间
+    import time
+    start_time = time.time()
+    print(f"开始运行时间: {time.strftime('%Y-%m-%d %H:%M:%S')}")
+    
     # 加载数据和模型
     test_df = pd.read_csv('../../data-hh/my/hh_result/hh_result_2024_6_merged.csv')
     model, label_encoders, scaler_x, scaler_y, city_map, city_labels, city_embeddings = load_model_and_encoders()
     price_stats = pd.read_csv('../../data-hh/my/hh_result/route_price_stats.csv')
 
     # 随机抽样100条数据
-    sampled_df = test_df.sample(n=1000, random_state=42)
+    # sampled_df = test_df.sample(n=1000, random_state=42)
+    sampled_df= test_df
     
     # 设置进程数
     n_processes = max(1, cpu_count() - 1)
@@ -1084,6 +1090,11 @@ if __name__ == '__main__':
     
     # 保存结果
     results_df.to_csv('parallel_optimization_results.csv', index=False)
+    
+    # 记录结束时间
+    end_time = time.time()
+    print(f"\n结束运行时间: {time.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"总运行时长: {(end_time - start_time) / 60:.2f} 分钟")
 
 
 # In[ ]:
