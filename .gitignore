@@ -4,3 +4,5 @@
 # 忽略所有 xlsx 文件
 *.xlsx
 
+*.csv
+*.xlsx
