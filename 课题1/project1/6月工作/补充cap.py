@@ -1,7 +1,7 @@
 import pandas as pd
 
 # 1. 读数据
-df = pd.read_csv('../../data_hh/航班销售结果数据_2023-01-01_2025-05-31.csv', index_col=0)
+df = pd.read_csv('../../../../data-hh/2025/2025-5/航班销售结果数据_2023-01-01_2025-07-01_encrypt.csv', index_col=0)
 
 # 2. 先对 leg_no=1/2 且 cap>0 的航班，按 (flt_date, flt_no) 求 cap 的平均值
 mean_caps = (
@@ -22,4 +22,4 @@ df.loc[mask3, 'cap'] = df.loc[mask3, 'mean_cap'].fillna(0)
 df.drop(columns='mean_cap', inplace=True)
 
 # 6. 保存
-df.to_csv('cap_补全后.csv')
+df.to_csv('../../../../data-hh/2025/2025-5/result/cap_补全后.csv')
